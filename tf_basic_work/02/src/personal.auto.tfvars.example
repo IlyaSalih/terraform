@@ -1,4 +1,7 @@
 # Скопируй в personal.auto.tfvars (он в .gitignore) и подставь свои значения
-cloud_id                = "b1g..."
-folder_id               = "b1g..."
-vms_ssh_public_root_key = "ssh-ed25519 AAAA... ilyas@pc"
+cloud_id  = "b1g..."
+folder_id = "b1g..."
+metadata = {
+  serial-port-enable = 1
+  ssh-keys           = "ubuntu:ssh-ed25519 AAAA... user@host"
+}

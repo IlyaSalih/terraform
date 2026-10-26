@@ -6,29 +6,10 @@ variable "vm_web_image_family" {
   description = "Семейство образа ОС"
 }
 
-
 variable "vm_web_platform_id" {
   type        = string
   default     = "standard-v2"
   description = "Платформа ВМ"
-}
-
-variable "vm_web_cores" {
-  type        = number
-  default     = 2
-  description = "Количество vCPU"
-}
-
-variable "vm_web_memory" {
-  type        = number
-  default     = 2
-  description = "Объём RAM, ГБ"
-}
-
-variable "vm_web_core_fraction" {
-  type        = number
-  default     = 20
-  description = "Гарантированная доля vCPU, %"
 }
 
 variable "vm_web_preemptible" {
@@ -43,11 +24,30 @@ variable "vm_web_nat" {
   description = "Публичный IP через NAT"
 }
 
-variable "vm_web_serial_port_enable" {
-  type        = number
-  default     = 1
-  description = "Доступ к серийной консоли"
-}
+# Не используются с задания 6 — заменены на vms_resources и metadata
+# variable "vm_web_cores" {
+#   type        = number
+#   default     = 2
+#   description = "Количество vCPU"
+# }
+#
+# variable "vm_web_memory" {
+#   type        = number
+#   default     = 2
+#   description = "Объём RAM, ГБ"
+# }
+#
+# variable "vm_web_core_fraction" {
+#   type        = number
+#   default     = 20
+#   description = "Гарантированная доля vCPU, %"
+# }
+#
+# variable "vm_web_serial_port_enable" {
+#   type        = number
+#   default     = 1
+#   description = "Доступ к серийной консоли"
+# }
 
 
 ###vm_db vars
@@ -70,29 +70,10 @@ variable "vm_db_image_family" {
   description = "Семейство образа ОС"
 }
 
-
 variable "vm_db_platform_id" {
   type        = string
   default     = "standard-v2"
   description = "Платформа ВМ"
-}
-
-variable "vm_db_cores" {
-  type        = number
-  default     = 2
-  description = "Количество vCPU"
-}
-
-variable "vm_db_memory" {
-  type        = number
-  default     = 2
-  description = "Объём RAM, ГБ"
-}
-
-variable "vm_db_core_fraction" {
-  type        = number
-  default     = 20
-  description = "Гарантированная доля vCPU, %"
 }
 
 variable "vm_db_preemptible" {
@@ -107,11 +88,30 @@ variable "vm_db_nat" {
   description = "Публичный IP через NAT"
 }
 
-variable "vm_db_serial_port_enable" {
-  type        = number
-  default     = 1
-  description = "Доступ к серийной консоли"
-}
+# Не используются с задания 6 — заменены на vms_resources и metadata
+# variable "vm_db_cores" {
+#   type        = number
+#   default     = 2
+#   description = "Количество vCPU"
+# }
+#
+# variable "vm_db_memory" {
+#   type        = number
+#   default     = 2
+#   description = "Объём RAM, ГБ"
+# }
+#
+# variable "vm_db_core_fraction" {
+#   type        = number
+#   default     = 20
+#   description = "Гарантированная доля vCPU, %"
+# }
+#
+# variable "vm_db_serial_port_enable" {
+#   type        = number
+#   default     = 1
+#   description = "Доступ к серийной консоли"
+# }
 
 
 ###vm name parts
@@ -138,4 +138,39 @@ variable "vm_db_role" {
   type        = string
   default     = "db"
   description = "Роль ВМ db — последняя часть имени"
+}
+
+
+###vms resources & metadata
+
+variable "vms_resources" {
+  type = map(object({
+    cores         = number
+    memory        = number
+    core_fraction = number
+    hdd_size      = number
+    hdd_type      = string
+  }))
+  default = {
+    web = {
+      cores         = 2
+      memory        = 2
+      core_fraction = 20
+      hdd_size      = 5
+      hdd_type      = "network-hdd"
+    }
+    db = {
+      cores         = 2
+      memory        = 2
+      core_fraction = 20
+      hdd_size      = 5
+      hdd_type      = "network-hdd"
+    }
+  }
+  description = "Ресурсы ВМ: ключ — роль ВМ"
+}
+
+variable "metadata" {
+  type        = map(string)
+  description = "Общие metadata для всех ВМ. Значение задаётся в personal.auto.tfvars (содержит ssh-ключ)"
 }

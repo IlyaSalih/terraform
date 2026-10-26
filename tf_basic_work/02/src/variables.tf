@@ -31,7 +31,7 @@ variable "vpc_name" {
 
 ###ssh vars
 
-variable "vms_ssh_public_root_key" {
-  type        = string
-  description = "Публичная часть ssh-ключа (ssh-keygen -t ed25519). Задаётся в personal.auto.tfvars"
-}
+# variable "vms_ssh_public_root_key" {
+#   type        = string
+#   description = "Публичная часть ssh-ключа (ssh-keygen -t ed25519). Задаётся в personal.auto.tfvars"
+# }

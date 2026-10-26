@@ -72,3 +72,12 @@ ssh ubuntu@$(terraform output -raw vm_external_ip) 'curl -s ifconfig.me'
 
 ![task_5](screenshots/task_5.png)
 
+## Задание 6
+
+- Ресурсы обеих ВМ объединены в переменную `vms_resources` типа `map(object({cores, memory, core_fraction, hdd_size, hdd_type}))`, ключи `web` и `db`. В ресурсах: `var.vms_resources["web"].cores` и т.д.
+- Общие для всех ВМ metadata вынесены в переменную `metadata` типа `map(string)` (в примере задания — плоская map «ключ = значение», поэтому `map(string)`, а не `map(object)`). Значение задаётся в `personal.auto.tfvars`, так как содержит ssh-ключ и подставить переменную в `default` нельзя.
+- Закомментированы неиспользуемые переменные: `vm_web_cores`, `vm_web_memory`, `vm_web_core_fraction`, `vm_web_serial_port_enable`, те же `vm_db_*`, а также `vms_ssh_public_root_key`.
+- `hdd_size = 5` и `hdd_type = "network-hdd"` — фактические значения существующих дисков, чтобы `terraform plan` не пересоздавал ВМ.
+
+![task_6](screenshots/task_6.png)
+
