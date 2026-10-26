@@ -61,3 +61,14 @@ ssh ubuntu@$(terraform output -raw vm_external_ip) 'curl -s ifconfig.me'
 
 В [`src/outputs.tf`](src/outputs.tf) объявлен один output `vms` — map, где для каждой ВМ (`web`, `db`) выводятся `instance_name`, `external_ip` и `fqdn`. Значения берутся из атрибутов ресурсов, без хардкода.
 
+## Задание 5 
+
+В [`src/locals.tf`](src/locals.tf) в одном блоке `locals` имена ВМ собираются интерполяцией из нескольких переменных:
+
+    vm_web_name = "${var.vm_project}-${var.vpc_name}-${var.vm_platform}-${var.vm_web_role}"
+    vm_db_name  = "${var.vm_project}-${var.vpc_name}-${var.vm_platform}-${var.vm_db_role}"
+
+В ресурсах ВМ используются `local.vm_web_name` и `local.vm_db_name`. Имена получились прежними, поэтому `terraform plan` показывает `No changes`.
+
+![task_5](screenshots/task_5.png)
+

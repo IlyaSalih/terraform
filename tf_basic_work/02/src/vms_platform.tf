@@ -6,11 +6,6 @@ variable "vm_web_image_family" {
   description = "Семейство образа ОС"
 }
 
-variable "vm_web_name" {
-  type        = string
-  default     = "netology-develop-platform-web"
-  description = "Имя ВМ"
-}
 
 variable "vm_web_platform_id" {
   type        = string
@@ -75,11 +70,6 @@ variable "vm_db_image_family" {
   description = "Семейство образа ОС"
 }
 
-variable "vm_db_name" {
-  type        = string
-  default     = "netology-develop-platform-db"
-  description = "Имя ВМ"
-}
 
 variable "vm_db_platform_id" {
   type        = string
@@ -121,4 +111,31 @@ variable "vm_db_serial_port_enable" {
   type        = number
   default     = 1
   description = "Доступ к серийной консоли"
+}
+
+
+###vm name parts
+
+variable "vm_project" {
+  type        = string
+  default     = "netology"
+  description = "Проект — первая часть имени ВМ"
+}
+
+variable "vm_platform" {
+  type        = string
+  default     = "platform"
+  description = "Платформа — часть имени ВМ"
+}
+
+variable "vm_web_role" {
+  type        = string
+  default     = "web"
+  description = "Роль ВМ web — последняя часть имени"
+}
+
+variable "vm_db_role" {
+  type        = string
+  default     = "db"
+  description = "Роль ВМ db — последняя часть имени"
 }
