@@ -57,3 +57,7 @@ ssh ubuntu@$(terraform output -raw vm_external_ip) 'curl -s ifconfig.me'
 
 ![task_3](screenshots/task_3.png)
 
+## Задание 4
+
+В [`src/outputs.tf`](src/outputs.tf) объявлен один output `vms` — map, где для каждой ВМ (`web`, `db`) выводятся `instance_name`, `external_ip` и `fqdn`. Значения берутся из атрибутов ресурсов, без хардкода.
+
