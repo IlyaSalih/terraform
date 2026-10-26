@@ -4,10 +4,12 @@
 
 ![01](screenshots/01.png)
 
+## Задание 1
+
 * Изучите файл .gitignore. В каком terraform-файле, согласно этому .gitignore, допустимо сохранить личную, секретную информацию?(логины,пароли,ключи,токены итд)
 
 `
-Согласно [.gitgnore](/tf_init/01/src/.gitignore), допустимым файлом для хранения нежных данных является personal.auto.tfvars
+Согласно src/.gitignore, допустимым файлом для хранения нежных данных является personal.auto.tfvars
 `
 
 * Выполните код проекта. Найдите в state-файле секретное содержимое созданного ресурса random_password, пришлите в качестве ответа конкретный ключ и его значение.
@@ -116,6 +118,8 @@ Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
 Строка 25 keep_locallt = true, образ должен хранится локально
 ```
 keep_locally (Boolean) If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker local storage on destroy operation.
+
+## Задание 2
 
 
 
